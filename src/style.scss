@@ -189,8 +189,23 @@ article {
       transform: translate3d(0, 0, 0);
     }
   }
+  h2 {
+    display: none;
+    margin-top: 0;
+    html.zh & {
+      display: block;
+      & + h2 {
+        display: none;
+      }
+    }
+    html.en & {
+      & + h2 {
+        display: block;
+      }
+    }
+  }
   img {
-    width: 50%;
+    width: 74%;
     display: block;
     margin: 0 auto;
   }
@@ -326,13 +341,16 @@ aside {
   span {
     top: 50%;
     left: 50%;
-    width: 290px;
+    // width: 290px;
     text-align: center;
     font-size: 12px;
     position: absolute;
     pointer-events: none;
     transform: translate3d(-50%, -50%, 0);
     margin-top: 83px;
+    background-color: transparentize($color: #fff, $amount: .3);
+    padding: 3px 5px;
+    border-radius: 3px;
     @media (min-width: 375px) {
       margin-top: 96px;
     }
