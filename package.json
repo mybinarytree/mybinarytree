@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/mybinarytree/mybinarytree.git"
   },
-  "author": "",
+  "author": {
+    "name": "lixinliang",
+    "url": "https://github.com/lixinliang"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mybinarytree/mybinarytree/issues"
