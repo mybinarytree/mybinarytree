@@ -1,8 +1,11 @@
 'use strict'
 
 const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const HtmlMinifierPlugin = require('html-minifier-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   devServer: {
@@ -19,6 +22,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -32,16 +36,27 @@ module.exports = {
     extensions: [
       '.js',
       '.scss'
-    ],
+    ]
   },
   plugins: [
+    new CopyPlugin([
+      {
+        from: 'src/*.jpg',
+        to: './',
+        flatten: true
+      }
+    ]),
+    new OptimizeCSSAssetsPlugin({}),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: "[id].css"
+      chunkFilename: '[id].css'
     }),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
+    }),
+    new HtmlMinifierPlugin({
+      collapseWhitespace: true
     })
   ],
   optimization: {
