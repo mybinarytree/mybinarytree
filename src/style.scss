@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-// @import "normalize.css";
+@import "~normalize.css";
 
 body {
   font-family:  "San Francisco", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   color: #333;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 * {
@@ -38,4 +38,318 @@ textarea {
 svg {
   fill: currentColor;
   pointer-events: none;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+section {
+  height: 100%;
+  margin: 0 auto;
+  max-width: 425px;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+$space-base-margin: 10px;
+
+$size-logo: 40px;
+
+$height-header: 60px;
+$height-footer: 40px;
+
+$color-font-green: #148d16;
+$color-font-brown: #6e482c;
+
+$color-border-gray: #eee;
+$color-border-shadow: #bdbdbd;
+
+$color-background-green: #f5fbf5;
+
+header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $height-header;
+  line-height: $height-header;
+  overflow: hidden;
+  position: absolute;
+  background-color: #fff;
+  border-bottom: 1px solid $color-border-gray;
+  z-index: 1;
+  h1 {
+    font-size: 0;
+    margin: 0;
+    padding-left: $space-base-margin * 2 + $size-logo;
+    padding-right: 150px;
+    text-align: center;
+    color: $color-font-brown;
+    background-color: transparentize($color: $color-background-green, $amount: .4);
+    @media (min-width: 320px) {
+      font-size: 1.2em;
+    }
+    @media (min-width: 375px) {
+      font-size: 1.5em;
+    }
+    @media (min-width: 414px) {
+      font-size: 2em;
+    }
+  }
+  img {
+    top: $space-base-margin;
+    left: $space-base-margin;
+    width: $size-logo;
+    height: $size-logo;
+    border: 1px solid $color-border-shadow;
+    border-radius: 4px;
+    position: absolute;
+  }
+  nav {
+    top: 0;
+    right: 0;
+    height: 100%;
+    position: absolute;
+    span {
+      height: 100%;
+      padding: 0 2px;
+      display: inline-block;
+      transition: color .3s;
+      color: $color-font-brown;
+      cursor: pointer;
+      &:first-child {
+        padding-left: $space-base-margin;
+      }
+      &:last-child {
+        letter-spacing: 1px;
+        padding-right: $space-base-margin;
+      }
+      html.zh &:first-child,
+      html.en &:last-child {
+        color: $color-font-green;
+      }
+    }
+  }
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: $height-footer;
+  line-height: $height-footer;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  border-top: 1px solid $color-border-gray;
+  background-color: #fff;
+  p {
+    color: #999;
+    background-color: transparentize($color: $color-background-green, $amount: .4);
+  }
+}
+
+article {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 0 ($space-base-margin + $space-base-margin);
+  padding-top: $height-header + ($space-base-margin + $space-base-margin);
+  padding-bottom: $height-footer + ($space-base-margin + $space-base-margin);
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+  transform: translate3d(100%, 0, 0);
+  transition: transform .3s linear;
+  &:nth-of-type(1) {
+    html.home & {
+      transform: translate3d(0, 0, 0);
+    }
+    html.easel & {
+      transform: translate3d(-100%, 0, 0);
+    }
+    html.preview & {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  &:nth-of-type(2) {
+    html.home & {
+      transform: translate3d(100%, 0, 0);
+    }
+    html.easel & {
+      transform: translate3d(0, 0, 0);
+    }
+    html.preview & {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  img {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+  figure {
+    width: 100%;
+    padding-top: 100%;
+    margin: 0;
+    position: relative;
+    canvas {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 34px;
+      box-shadow: 0 0 10px 1px transparentize($color: #000000, $amount: .9);
+    }
+  }
+  button {
+    width: 110px;
+    height: 40px;
+    margin: 20px auto 0;
+    font-size: 16px;
+    color: $color-font-green;
+    border: 1px solid currentColor;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparentize($color: $color-background-green, $amount: .4);
+    &:active {
+      background-color: transparentize($color: $color-background-green, $amount: 0);
+    }
+    display: none;
+    html.zh & {
+      display: block;
+      & + button {
+        display: none;
+      }
+    }
+    html.en & {
+      & + button {
+        display: block;
+      }
+    }
+  }
+  ul {
+    margin: 20px 0;
+    padding-left: 2em;
+    li {
+      height: 32px;
+      line-height: 32px;
+      display: none;
+      color: $color-font-brown;
+      text-align: left;
+      p {
+        a {
+          display: block;
+          cursor: pointer;
+          color: $color-font-brown;
+        }
+      }
+      html.zh &:nth-child(odd),
+      html.en &:nth-child(even) {
+        display: list-item;
+      }
+    }
+  }
+}
+
+aside {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  z-index: 2;
+  html.preview & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  i {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    background-color: transparentize($color: #000, $amount: .3);
+  }
+  svg {
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    color: #fff;
+    position: absolute;
+    pointer-events: none;
+    transform: translate3d(-50%, -50%, 0);
+    margin-top: 210px;
+    @media (min-width: 375px) {
+      margin-top: 240px;
+    }
+    @media (min-width: 414px) {
+      margin-top: 270px;
+    }
+  }
+  img {
+    top: 50%;
+    left: 50%;
+    width: 290px;
+    height: 290px * 1.22;
+    cursor: pointer;
+    position: absolute;
+    background-color: #fff;
+    transform: translate3d(-50%, -50%, 0);
+    @media (min-width: 375px) {
+      width: 340px;
+      height: 340px * 1.22;
+    }
+    @media (min-width: 414px) {
+      width: 380px;
+      height: 380px * 1.22;
+    }
+  }
+  span {
+    top: 50%;
+    left: 50%;
+    width: 290px;
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    pointer-events: none;
+    transform: translate3d(-50%, -50%, 0);
+    margin-top: 83px;
+    @media (min-width: 375px) {
+      margin-top: 96px;
+    }
+    @media (min-width: 414px) {
+      margin-top: 110px;
+    }
+    opacity: 0;
+    html.zh & {
+      opacity: 1;
+      & + span {
+        opacity: 0;
+      }
+    }
+    html.en & {
+      & + span {
+        opacity: 1;
+      }
+    }
+  }
 }
